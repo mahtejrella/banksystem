@@ -1,4 +1,4 @@
-# BPPL RAMS Smart App UI
+# Bank System
 
 ## Installation Steps
 1. Clone this repository.
