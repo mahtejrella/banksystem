@@ -2,77 +2,84 @@ import {useState} from 'react';
 import Head from 'next/head'
 
 import 'react-pro-sidebar/dist/css/styles.css';
+import { LockClosedIcon } from '@heroicons/react/solid'
 
 
 export default function Home() {
-  const [numComponent, setnumComponent] = useState(0);
   return (
-    <div className="flex">
-      <div className="w-full">
-        <div className="w-full">
-          <Head>
-            <title>Dashboard - Basel Practitioners</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-
-          <main className={numComponent===0?"w-full px-5 text-center h-screen":"hidden"}>
-            <h1 className="text-6xl font-bold pt-10 w-full text-left">
-              Welcome to <span className="text-red-800">BPPL Smart App </span>
-            </h1>
-
-            <div className="mt-10 w-110 grid lg:grid-cols-3 ">
-              <div className="bg-gray-100 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(1)}}>
-                  <p className="text-red-800 text-2xl font-bold">Credit Risk</p>
-                  <p className="text-black pt-5 text-lg font-thin">Get started with the Credit Risk framework here</p>
-
+    <>
+      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">Login</h2>
+          </div>
+          <form className="mt-8 space-y-6" action="/admin" method="POST">
+            <input type="hidden" name="remember" defaultValue="true" />
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Email address"
+                />
               </div>
-              <div className="bg-gray-100 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(2)}}>
-                  <p className="text-red-800 text-2xl font-bold">Counterparty Risk (SACCR)</p>
-                  <p className="text-black pt-5 text-lg font-thin">Get started with the Counterparty Risk framework here</p>
-
-              </div>
-              <div className="bg-gray-100 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(3)}}>
-                  <p className="text-red-800 text-2xl font-bold">Market Risk</p>
-                  <p className="text-black pt-5 text-lg font-thin">Get started with the Market Risk framework here</p>
-
-              </div>
-              <div className="bg-gray-100 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(4)}}>
-                  <p className="text-red-800 text-2xl font-bold">Operational Risk</p>
-                  <p className="text-black pt-5 text-lg font-thin">Get started with the Operational Risk framework here</p>
-
-              </div>
-              <div className="bg-gray-100 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(5)}}>
-                  <p className="text-red-800 text-2xl font-bold">Liquidity Risk</p>
-                  <p className="text-black pt-5 text-lg font-thin">Get started with the Liquidity Risk framework here</p>
-
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                />
               </div>
             </div>
 
-            
-          </main>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                  Remember me
+                </label>
+              </div>
 
-          <main className={numComponent===1?"w-full px-5 text-center min-h-screen":"hidden"}>
+              <div className="text-sm">
+                <a href="#" className="font-medium text-black hover:text-blue-500">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
 
-          </main>
-
-          <main className={numComponent===2?"w-full px-5 text-center min-h-screen":"hidden"}>
-           
-          </main>
-
-          <main className={numComponent===3?"w-full px-5 text-center min-h-screen":"hidden"}>
-            
-          </main>
-
-          <main className={numComponent===4?"w-full px-5 text-center min-h-screen":"hidden"}>
-            
-          </main>
-          
-          <main className={numComponent===5?"w-full px-5 text-center min-h-screen":"hidden"}>
-            
-          </main>
-
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <LockClosedIcon className="h-5 w-5 text-white group-hover:text-white-400" aria-hidden="true" />
+                </span>
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      </div>
-    </div>
+    </>
   )
 }
