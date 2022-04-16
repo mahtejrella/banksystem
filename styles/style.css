@@ -1,0 +1,28 @@
+.ag-cell {
+  border-right: 1px solid #c8c8c8 !important;
+}
+
+.fade {
+    transition: opacity 0.15s linear;
+  }
+  .fade:not(.show) {
+    opacity: 0;
+  }
+  .collapse:not(.show) {
+    display: none;
+  }
+  .collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .collapsing {
+      transition: none;
+    }
+    .fade {
+      transition: none;
+    }
+  }
+ 
+  

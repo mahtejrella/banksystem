@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
+    "ag-grid-community": "^23.1.0",
+    "ag-grid-react": "^23.1.0",
+    "axios": "^0.21.1",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^17.0.2",
+    "react-loader-spinner": "^4.0.0",
+    "react-pro-sidebar": "^0.6.0",
+    "react-tabulator": "^0.15.0",
+    "reactstrap": "^8.9.0",
+    "xlsx": "^0.17.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4"
+  }
+}
