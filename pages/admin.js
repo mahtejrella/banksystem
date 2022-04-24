@@ -1,76 +1,209 @@
-import {useState} from 'react';
-import { useRouter } from 'next/router';
+import {useState,useEffect} from 'react';
 import Head from 'next/head'
 
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 
-export default function admin() {
+import ViewStatMenu from '../components/ViewStatMenu';
+import ManageUserMenu from '../components/ManageUserMenu';
+
+
+export default function Home() {
   const [numComponent, setnumComponent] = useState(0);
-  const router = useRouter();
   return (
     <div className="flex">
-    <div className="w-full">
+      <div>
+        <ProSidebar>
+          <Menu  iconShape="square" popperArrow={true}>
+            <MenuItem>
+              <div className="m-auto text-lg font-bold"></div>
+            </MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(0)}}>Home</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(1)}}>View Stats</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(2)}}>Create Corporation</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(3)}}>Manage Users</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(4)}}>Hire Worker</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(5)}}>Replace Manager</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(6)}}>Create Fee</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(7)}}>Manager Overdraft</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(8)}}>Pay Employee</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(9)}}>Manage Accounts</MenuItem>
+            <MenuItem onClick={()=>{setnumComponent(10)}}>Create Bank</MenuItem>
+        </Menu>
+        </ProSidebar>
+      </div>
       <div className="w-full">
-        <Head>
-          <title>Admin</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+        <div className="w-full">
+          <Head>
+            <title>Banking System</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-        <main className={numComponent===0?"w-full px-5 text-center h-screen":"hidden"}>
-          <h1 className="text-3xl font-bold pt-10 w-full text-center">
-            Admin Menu
-          </h1>
+          <main className={numComponent===0?"w-full px-5 text-center h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Admin Menu
+            </h1>
 
-          <div className="flex-1 mt-16 w-110 grid lg:grid-cols-3">
-           <div className="p-5 m-7 transform hover:scale-110 transition ease-in"></div>
+            <p className="my-3 text-2xl w-full text-left">
+              Choose one of the options to get started
+            </p>
 
-            <div className="bg-black rounded-xl p-5 m-7 border transform transition ease-in cursor-pointer" onClick={()=>{router.push("admin/viewstats")}}>
-                <p className="text-white text-xl font-bold">View Stats</p>
+            <div className="mt-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(1)}}>
+                  <p className="text-black text-2xl font-bold">View Stats</p>
+                  
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(2)}}>
+                  <p className="text-black text-2xl font-bold">Create Corporation</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(3)}}>
+                  <p className="text-black text-2xl font-bold">Manager Users</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(4)}}>
+                  <p className="text-black text-2xl font-bold">Hire Worker</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(5)}}>
+                  <p className="text-black text-2xl font-bold">Replace Manager</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(6)}}>
+                  <p className="text-black text-2xl font-bold">Create Fee</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(7)}}>
+                  <p className="text-black text-2xl font-bold">Manage Overdraft</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(8)}}>
+                  <p className="text-black text-2xl font-bold">Pay Employees</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(9)}}>
+                  <p className="text-black text-2xl font-bold">Manage Accounts</p>
+
+              </div>
+              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(10)}}>
+                  <p className="text-black text-2xl font-bold">Create Bank</p>
+
+              </div>
             </div>
+          </main>
 
-            <div className="p-5 m-7 transform hover:scale-110 transition ease-in"></div>
-          </div>
+          <main className={numComponent===1?"w-full px-5 text-center h-screen":"hidden"}>
+            <ViewStatMenu title="View Stats" />
+          </main>
 
-          <div className="mt-2 w-110 grid lg:grid-cols-2">
+          <main className={numComponent===2?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Create Corporation
+            </h1>
+          </main>
 
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/createcorporation")}}>
-                <p className="text-white text-xl font-bold">Create Corporation</p>
-            </div>
+          <main className={numComponent===3?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <ViewStatMenu title="Manage Users" />
+          </main>
 
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/createfee")}}>
-                <p className="text-white text-xl font-bold">Create Fee</p>
-            </div>
+          <main className={numComponent===4?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Hire Worker
+            </h1>
+          </main>
 
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/manageusers")}}>
-                <p className="text-white text-xl font-bold">Manage Users</p>
-            </div>
+          <main className={numComponent===5?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Replace Manager
+            </h1>
+          </main>
 
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/manageoverdraft")}}>
-                <p className="text-white text-xl font-bold">Manage Overdraft</p>
-            </div>
-
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/hireworker")}}>
-                <p className="text-white text-xl font-bold">Hire Worker</p>
-            </div>
-
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/payemployees")}}>
-                <p className="text-white text-xl font-bold">Pay Employees</p>
-            </div>
-
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/replacemanager")}}>
-                <p className="text-white text-xl font-bold">Replace Manager</p>
-            </div>
-
-            <div className="bg-black rounded-xl p-5 m-7 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{router.push("admin/manageaccounts")}}>
-                <p className="text-white text-xl font-bold">Manage Accounts</p>
-            </div>
-
-          </div>
-
+          <main className={numComponent===6?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Create Fee
+            </h1>
+          </main>
           
-        </main>
+          <main className={numComponent===7?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Manage Overdraft
+            </h1>
+          </main>
+
+          <main className={numComponent===8?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Pay Employees
+            </h1>
+          </main>
+
+          <main className={numComponent===9?"w-full px-5 text-center min-h-screen":"hidden"}>
+            <h1 className="text-5xl font-bold pt-10 w-full text-left">
+             Manage Accounts
+            </h1>
+          </main>
+
+          <main className={numComponent===10?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Create Bank
+            </h1>
+          </main>
+
+          <main className={numComponent===11?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Display Account Stats
+            </h1>
+          </main>
+
+          <main className={numComponent===12?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Display Corporation Stats
+            </h1>
+          </main>
+
+          <main className={numComponent===13?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Display Bank Stats
+            </h1>
+          </main>
+
+          <main className={numComponent===14?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Display Customer Stats
+            </h1>
+          </main>
+
+          <main className={numComponent===15?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Display Employee Stats
+            </h1>
+          </main>
+
+          <main className={numComponent===16?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Create Employee Role
+            </h1>
+          </main>
+
+          <main className={numComponent===17?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Create Customer Role
+            </h1>
+          </main>
+
+          <main className={numComponent===18?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Stop Employee Role
+            </h1>
+          </main>
+
+          <main className={numComponent===19?"w-full px-5 text-center min-h-screen":"hidden"}>
+           <h1 className="text-5xl font-bold pt-10 w-full text-left">
+            Stop Customer Role
+            </h1>
+          </main>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
   )
 }
