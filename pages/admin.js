@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 
-import ViewStatMenu from '../components/ViewStatMenu';
+import ViewStatMenu from '../components/admin/viewstats/ViewStatMenu';
 import ManageUserMenu from '../components/ManageUserMenu';
 
 

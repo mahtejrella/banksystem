@@ -1,6 +1,10 @@
 import React, {useState} from 'react'
 
-import data from './data'
+import AccountStats from './AccountStats'
+import BankStats from './BankStats'
+import CorporationStats from './CorporationStats'
+import CustomerStats from './CustomerStats'
+import EmployeeStats from './EmployeeStats'
 
 const ViewStatMenu = (props) => {
     const [active,setActive] = useState(1)
@@ -40,7 +44,36 @@ const ViewStatMenu = (props) => {
                 </div>
             </div>
             <div className="w-full">
+                {
+                    active==1?
+                    <AccountStats />
+                    :null
+                }
                 
+                {
+                    active==2?
+                    <CorporationStats />
+                    :null
+                }
+
+                {
+                    active==3?
+                    <BankStats />
+                    :null
+                }
+
+                {
+                    active==4?
+                    <CustomerStats />
+                    :null
+                }
+
+                {
+                    active==5?
+                    <EmployeeStats />
+                    :null
+                }
+
             </div>
         </div>
     )
