@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from 'reactstrap'
 import Link from "next/link"
 
 const NavBar = () => {
@@ -12,7 +11,7 @@ const NavBar = () => {
             </div>
         </nav>
         <Link href="/admin">
-          <a>Login</a>
+        <a class="bg-black hover:bg-yellow-500 hover:text-black text-white font-bold py-2 px-4 rounded">Login</a>
         </Link>
         </header>
     )
