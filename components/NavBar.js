@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button } from 'reactstrap'
+import Link from "next/link"
+
 const NavBar = () => {
     return (
         <header className="w-full bg-white p-4 flex justify-between items-center border-b-2 ">
@@ -9,9 +11,9 @@ const NavBar = () => {
             <div className="text-2xl text-black font-bold">Georgia Tech Banking System</div>
             </div>
         </nav>
-        <div className="w-8 h-8 cursor-pointer pr-16">
-            <p className="text-lg">Login</p>
-        </div>
+        <Link href="/admin">
+          <a>Login</a>
+        </Link>
         </header>
     )
 }
