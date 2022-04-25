@@ -8,7 +8,7 @@ const AccountStats = () => {
 
   useEffect(() => {
     async function getData(){
-      const res = await fetch(`/api/viewstats/accountstats`)
+      const res = await fetch(`http://localhost:5000/api/viewstats/accountstats`)
       const data = await res.json()
       setAccounts(data)
     }
