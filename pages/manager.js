@@ -30,7 +30,7 @@ export default function manager() {
 
           <main className={numComponent===0?"w-full px-5 text-center h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
-              Customer Menu
+              Manager Menu
             </h1>
 
             <p className="my-3 text-2xl w-full text-left">

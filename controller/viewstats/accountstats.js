@@ -1,6 +1,7 @@
 import { executeQuery } from "../../config/db";
 const getaccountstats = async (req, res) => {
-    let accountdata = await executeQuery('select * from bank', []);
+    const x = 'select * from bank';
+    let accountdata = await executeQuery(x, []);
     res.send(accountdata);
 };
 
