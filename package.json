@@ -14,7 +14,10 @@
     "ag-grid-community": "^23.1.0",
     "ag-grid-react": "^23.1.0",
     "axios": "^0.21.1",
+    "import": "^0.0.6",
+    "mysql": "^2.18.1",
     "next": "latest",
+    "next-connect": "^0.12.2",
     "react": "^17.0.2",
     "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.2",
@@ -23,6 +26,7 @@
     "react-router-dom": "^6.3.0",
     "react-tabulator": "^0.15.0",
     "reactstrap": "^8.9.0",
+    "serverless-mysql": "^1.5.4",
     "xlsx": "^0.17.1"
   },
   "devDependencies": {
