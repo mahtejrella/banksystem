@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../../../config/db";
 const getaccountstats = async (req, res) => {
     const x = `
     select table3.bankName as name_of_bank, table3.accountID as account_identifier, table3.balance as account_assets, 

@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../../../config/db";
 const getemployeestats = async (req, res) => {
     const x = `
 	select table3.perID as person_identifier, table3.taxID as tax_identifier, table3.fullName as employee_name, 

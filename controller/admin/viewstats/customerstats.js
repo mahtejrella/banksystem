@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../../../config/db";
 const getcustomerstats = async (req, res) => {
     const x = `
 	select bank_user.perID as person_identifier, taxID as tax_identifier, concat(firstName, ' ', lastName) as customer_name, 

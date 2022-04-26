@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../../../config/db";
 const getcorporationstats = async (req, res) => {
     const x = `
 	select table4.corpID as corporation_identifier, table4.shortName as short_name, table4.longName as formal_name, 
