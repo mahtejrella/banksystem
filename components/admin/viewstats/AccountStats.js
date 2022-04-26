@@ -22,28 +22,18 @@ const AccountStats = () => {
     <table class="w-full">
       <thead>
         <tr class="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
-          <th class="px-4 py-3">bankID</th>
-          <th class="px-4 py-3">bankName</th>
-          <th class="px-4 py-3">street</th>
-          <th class="px-4 py-3">city</th>
-          <th class="px-4 py-3">state</th>
-          <th class="px-4 py-3">zip</th>
-          <th class="px-4 py-3">resAssets</th>
-          <th class="px-4 py-3">corpID</th>
-          <th class="px-4 py-3">manager</th>
+          <th class="px-4 py-3">name_of_bank</th>
+          <th class="px-4 py-3">account_identifier</th>
+          <th class="px-4 py-3">account_assets</th>
+          <th class="px-4 py-3">number_of_owners</th>
         </tr>
       </thead>
       <tbody>
         {accounts.map((x, i) => <tr key={i}>
-          <td>{x.bankID}</td>
-          <td>{x.bankName}</td>
-          <td>{x.street}</td>
-          <td>{x.city}</td>
-          <td>{x.state}</td>
-          <td>{x.zip}</td>
-          <td>{x.resAssets}</td>
-          <td>{x.corpID}</td>
-          <td>{x.manager}</td>
+          <td>{x.name_of_bank}</td>
+          <td>{x.account_identifier}</td>
+          <td>{x.account_assets}</td>
+          <td>{x.number_of_owners}</td>
         </tr>)}
       </tbody>
     </table>
