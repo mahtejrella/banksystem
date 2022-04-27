@@ -19,18 +19,18 @@ const BankStats = () => {
   //<button onClick={handleSubmit}>Test</button>
 
   return (<div style={{ margin: 20 }}>
-    <table class="w-full">
+    <table className="w-full">
       <thead>
-        <tr class="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
-          <th class="px-4 py-3">bank_identifier</th>
-          <th class="px-4 py-3">name_of_corporation</th>
-          <th class="px-4 py-3">name_of_bank</th>
-          <th class="px-4 py-3">street</th>
-          <th class="px-4 py-3">city</th>
-          <th class="px-4 py-3">zip</th>
-          <th class="px-4 py-3">number_of_accounts</th>
-          <th class="px-4 py-3">bank_assets</th>
-          <th class="px-4 py-3">total_assets</th>
+        <tr className="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
+          <th className="px-4 py-3">bank_identifier</th>
+          <th className="px-4 py-3">name_of_corporation</th>
+          <th className="px-4 py-3">name_of_bank</th>
+          <th className="px-4 py-3">street</th>
+          <th className="px-4 py-3">city</th>
+          <th className="px-4 py-3">zip</th>
+          <th className="px-4 py-3">number_of_accounts</th>
+          <th className="px-4 py-3">bank_assets</th>
+          <th className="px-4 py-3">total_assets</th>
         </tr>
       </thead>
       <tbody>

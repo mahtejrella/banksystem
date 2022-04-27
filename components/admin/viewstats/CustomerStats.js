@@ -19,20 +19,20 @@ const CustomerStats = () => {
   //<button onClick={handleSubmit}>Test</button>
 
   return (<div style={{ margin: 20 }}>
-    <table class="w-full">
+    <table className="w-full">
       <thead>
-        <tr class="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
-          <th class="px-4 py-3">person_identifier</th>
-          <th class="px-4 py-3">tax_identifier</th>
-          <th class="px-4 py-3">customer_name</th>
-          <th class="px-4 py-3">date_of_birth</th>
-          <th class="px-4 py-3">joined_system</th>
-          <th class="px-4 py-3">street</th>
-          <th class="px-4 py-3">city</th>
-          <th class="px-4 py-3">state</th>
-          <th class="px-4 py-3">zip</th>
-          <th class="px-4 py-3">number_of_accounts</th>
-          <th class="px-4 py-3">customer_assets</th>
+        <tr className="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
+          <th className="px-4 py-3">person_identifier</th>
+          <th className="px-4 py-3">tax_identifier</th>
+          <th className="px-4 py-3">customer_name</th>
+          <th className="px-4 py-3">date_of_birth</th>
+          <th className="px-4 py-3">joined_system</th>
+          <th className="px-4 py-3">street</th>
+          <th className="px-4 py-3">city</th>
+          <th className="px-4 py-3">state</th>
+          <th className="px-4 py-3">zip</th>
+          <th className="px-4 py-3">number_of_accounts</th>
+          <th className="px-4 py-3">customer_assets</th>
         </tr>
       </thead>
       <tbody>

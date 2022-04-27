@@ -6,6 +6,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 
 import ViewStatMenu from '../components/admin/viewstats/ViewStatMenu';
 import ManageUserMenu from '../components/ManageUserMenu';
+import CreateCorporation from '../components/admin/CreateCorporation';
 
 
 export default function Home() {
@@ -101,10 +102,13 @@ export default function Home() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Create Corporation
             </h1>
+            <CreateCorporation/>
           </main>
 
           <main className={numComponent===3?"w-full px-5 text-center min-h-screen":"hidden"}>
-           <ViewStatMenu title="Manage Users" />
+          <h1 className="text-5xl font-bold pt-10 w-full text-left">
+              Manage Users
+            </h1>
           </main>
 
           <main className={numComponent===4?"w-full px-5 text-center min-h-screen":"hidden"}>

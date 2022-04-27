@@ -19,15 +19,15 @@ const CorporationStats = () => {
   //<button onClick={handleSubmit}>Test</button>
 
   return (<div style={{ margin: 20 }}>
-    <table class="w-full">
+    <table className="w-full">
       <thead>
-        <tr class="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
-          <th class="px-4 py-3">corporation_identifier</th>
-          <th class="px-4 py-3">short_name</th>
-          <th class="px-4 py-3">formal_name</th>
-          <th class="px-4 py-3">number_of_banks</th>
-          <th class="px-4 py-3">corporation_assets</th>
-          <th class="px-4 py-3">total_assets</th>
+        <tr className="text-md tracking-wide text-middle text-gray-900 bg-gray-100 border-b border-gray-600">
+          <th className="px-4 py-3">corporation_identifier</th>
+          <th className="px-4 py-3">short_name</th>
+          <th className="px-4 py-3">formal_name</th>
+          <th className="px-4 py-3">number_of_banks</th>
+          <th className="px-4 py-3">corporation_assets</th>
+          <th className="px-4 py-3">total_assets</th>
         </tr>
       </thead>
       <tbody>

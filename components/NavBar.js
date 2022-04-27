@@ -11,7 +11,7 @@ const NavBar = () => {
             </div>
         </nav>
         <Link href="/admin">
-        <a class="bg-black hover:bg-yellow-500 hover:text-black text-white font-bold py-2 px-4 rounded">Login</a>
+        <a className="bg-black hover:bg-yellow-500 hover:text-black text-white font-bold py-2 px-4 rounded">Login</a>
         </Link>
         </header>
     )
