@@ -7,6 +7,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import ViewStatMenu from '../components/admin/viewstats/ViewStatMenu';
 import ManageUserMenu from '../components/ManageUserMenu';
 import CreateCorporation from '../components/admin/CreateCorporation';
+import HireWorker from '../components/admin/HireWorker';
 
 
 export default function Home() {
@@ -115,6 +116,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Hire Worker
             </h1>
+            <HireWorker/>
           </main>
 
           <main className={numComponent===5?"w-full px-5 text-center min-h-screen":"hidden"}>
