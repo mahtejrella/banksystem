@@ -1,6 +1,12 @@
 import React, {useState} from 'react'
 
-const ManageUserMenu = (props) => {
+import CreateCustomerRole from './CreateCustomerRole'
+import CreateEmployeeRole from './CreateEmployeeRole'
+import StopEmployeeRole from './StopEmployeeRole'
+import StopCustomerRole from './StopCustomerRole'
+
+
+const ViewStatMenu = (props) => {
     const [active,setActive] = useState(1)
 
     const handleActive = (item) => {
@@ -31,16 +37,39 @@ const ManageUserMenu = (props) => {
                 <div className="flex w-full bg-gray-200 px-2 py-2 rounded-b-md">
                 <Tab num={1} name="Create Employee Role"/>
                 <Tab num={2} name="Create Customer Role"/>
-                <Tab num={3} name="Stop Employee Role"/>
+                <Tab num={3} name="Stop Employee Roles"/>
                 <Tab num={4} name="Stop Customer Role"/>
                 
                 </div>
             </div>
             <div className="w-full">
+                {
+                    active==1?
+                    <CreateEmployeeRole />
+                    :null
+                }
                 
+                {
+                    active==2?
+                    <CreateCustomerRole />
+                    :null
+                }
+
+                {
+                    active==3?
+                    <StopEmployeeRole />
+                    :null
+                }
+
+                {
+                    active==4?
+                    <StopCustomerRole />
+                    :null
+                }
+
             </div>
         </div>
     )
 }
 
-export default ManageUserMenu
+export default ViewStatMenu

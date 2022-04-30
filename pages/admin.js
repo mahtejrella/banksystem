@@ -5,7 +5,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 
 import ViewStatMenu from '../components/admin/viewstats/ViewStatMenu';
-import ManageUserMenu from '../components/ManageUserMenu';
+import ManageUserMenu from '../components/admin/manageusers/ManageUserMenu'
 import CreateCorporation from '../components/admin/CreateCorporation';
 import HireWorker from '../components/admin/HireWorker';
 
@@ -110,6 +110,7 @@ export default function Home() {
           <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Manage Users
             </h1>
+            <ManageUserMenu/>
           </main>
 
           <main className={numComponent===4?"w-full px-5 text-center min-h-screen":"hidden"}>

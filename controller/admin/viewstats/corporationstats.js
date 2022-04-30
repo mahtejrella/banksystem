@@ -25,9 +25,11 @@ const getcorporationstats = async (req, res) => {
 
 const postcorporationstats = async (req, res) => {
 	console.log(req.body);
+
 	const x = `
 	call create_corporation("${req.body.ip_corpID}", "${req.body.ip_shortName}", "${req.body.ip_longName}", "${Number(req.body.ip_resAssets)}"); 
 	`;
+
 	console.log(x)
 	let corporationdata = await executeQuery(x, []);
     res.send(corporationdata);
