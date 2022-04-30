@@ -8,6 +8,9 @@ import ViewStatMenu from '../components/admin/viewstats/ViewStatMenu';
 import ManageUserMenu from '../components/admin/manageusers/ManageUserMenu'
 import CreateCorporation from '../components/admin/CreateCorporation';
 import HireWorker from '../components/admin/HireWorker';
+import CreateFee from '../components/admin/CreateFee';
+import ManageOverdraft from '../components/admin/ManageOverdraft';
+import ManageAccess from '../components/admin/ManageAccess';
 
 
 export default function Home() {
@@ -130,11 +133,13 @@ export default function Home() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Create Fee
             </h1>
+            <CreateFee/>
           </main>
           
           <main className={numComponent===7?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Manage Overdraft
+              < ManageOverdraft/>
             </h1>
           </main>
 
@@ -147,6 +152,7 @@ export default function Home() {
           <main className={numComponent===9?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
              Manage Accounts
+             <ManageAccess/>
             </h1>
           </main>
 
