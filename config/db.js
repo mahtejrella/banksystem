@@ -1,20 +1,23 @@
 const {createPool} = require('mysql');
+
 const pool=createPool({
-    host:"localhost",
-    user:"root",
-    password:"malav2001",
-    port:3306,
-    database:"bank_management",
+    host:'localhost',
+    user:'root',
+    password:'Mahtej@1234',
+    database:'bank_management',
 });
+
 
 pool.getConnection((err) => {
     if(err) {
         console.log('Error connecting to db...');
+        console.log(err);
     }
     else {
         console.log('Connected to db...');
     }
 });
+
 
 const executeQuery = (query,arraParms) => {
     return new Promise((resolve,reject) => {

@@ -13,13 +13,15 @@ export default function StopCustomerRole() {
       const res = await fetch(`/api/viewstats/customerstats`)
       const data = await res.json()
       setCustomerList(data)
+      console.log("data", data)
     }
     getData()
   }, [])
 
+
   const onSubmit=async(e)=>{
     e.preventDefault();
-    let data = await axios.post('/api/stopcustomerrole', customer);
+    let data = await axios.delete('/api/viewstats/customerstats', customer);
     console.log("data", data.data)
   }
 
@@ -48,7 +50,7 @@ export default function StopCustomerRole() {
                       id="text"
                       name="ip_perID"
                       placeholder='Employee ID'
-                      className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
                       {customerList.map((x, i) =>
                         <option key={x}>{JSON.stringify(x.person_identifier)}</option>

@@ -10,10 +10,10 @@ import CreateCorporation from "../components/admin/CreateCorporation";
 import HireWorker from "../components/admin/HireWorker";
 import ReplaceManager from "../components/admin/ReplaceManager";
 import CreateBank from "../components/admin/CreateBank";
-
 import CreateFee from '../components/admin/CreateFee';
 import ManageOverdraft from '../components/admin/ManageOverdraft';
-import ManageAccess from '../components/admin/ManageAccess';
+import ManageAccounts from '../components/admin/ManageAccounts';
+import PayEmployee from "../components/admin/PayEmployee";
 
 export default function Home() {
   const [numComponent, setnumComponent] = useState(0);
@@ -309,6 +309,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Pay Employees
             </h1>
+            <PayEmployee/>
           </main>
 
           <main
@@ -321,7 +322,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Manage Accounts
             </h1>
-            <ManageAccess/>
+            <ManageAccounts/>
           </main>
 
           <main
