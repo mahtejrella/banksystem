@@ -13,7 +13,7 @@ export default function CreateCorporation() {
 
     const onSubmit=async(e)=>{
       e.preventDefault();
-      let data = await axios.post('http://localhost:5000/api/viewstats/corporationstats', corporation);
+      let data = await axios.post('/api/viewstats/corporationstats', corporation);
       console.log("data", data.data)
       setCorporation({
         ip_corpID:"",
