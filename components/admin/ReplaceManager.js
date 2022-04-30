@@ -46,7 +46,7 @@ export default function Example() {
                         htmlFor="country"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        User
+                        Bank
                       </label>
                       <select
                         id="country"
@@ -54,9 +54,28 @@ export default function Example() {
                         autoComplete="country-name"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>User1</option>
-                        <option>User2</option>
-                        <option>User2</option>
+                        <option>Bank1</option>
+                        <option>Bank2</option>
+                        <option>Bank2</option>
+                      </select>
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="country"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Employee
+                      </label>
+                      <select
+                        id="country"
+                        name="country"
+                        autoComplete="country-name"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      >
+                        <option>Emp1</option>
+                        <option>Emp2</option>
+                        <option>Emp2</option>
                       </select>
                     </div>
 
@@ -65,39 +84,7 @@ export default function Example() {
                         htmlFor="email-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Salary
-                      </label>
-                      <input
-                        type="text"
-                        name="email-address"
-                        id="email-address"
-                        autoComplete="email"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        # of Payments
-                      </label>
-                      <input
-                        type="text"
-                        name="email-address"
-                        id="email-address"
-                        autoComplete="email"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Accumulated Earnings
+                        $New salary
                       </label>
                       <input
                         type="text"
