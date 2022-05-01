@@ -1,5 +1,28 @@
+import {React, useState, useEffect} from 'react'
+import { useRouter } from 'next/dist/client/router'
+import axios from 'axios';
 
 export default function Example() {
+
+  const [employeeList, setEmployeeList] = useState([])
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/employee`)
+      const data = await res.json()
+      setEmployeeList(data)
+      console.log("data", data)
+    }
+    getData()
+  }, [])
+
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    let data = await axios.post('/api/employee', employee);
+    console.log("data", data.data)
+  }
+
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -28,9 +51,9 @@ export default function Example() {
                         autoComplete="country-name"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>User1</option>
-                        <option>User2</option>
-                        <option>User2</option>
+                      {employeeList.map((x, i) =>
+                        <option key={x}>{JSON.stringify(x.ip_perID)}</option>
+                      )}
                       </select>
                     </div>
 
