@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 
+import PayEmployee from "../components/manager/PayEmployee";
+import HireWorker from "../components/manager/HireWorker";
 
 export default function manager() {
   const [numComponent, setnumComponent] = useState(0);
@@ -55,29 +57,16 @@ export default function manager() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Pay Employee
             </h1>
-
-            <div className="mt-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
-              <div className="bg-yellow-500 rounded-xl p-5 m-5 border transform hover:scale-110 transition ease-in cursor-pointer" onClick={()=>{setnumComponent(3)}}>
-                  <p className="text-black text-2xl font-bold">Pay all employees</p>
-                  
-
-              </div>
-            </div>
-
-            
+            <PayEmployee/>
           </main>
 
           <main className={numComponent===2?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Hire Worker
             </h1>
+            <HireWorker/>
           </main>
 
-          <main className={numComponent===3?"w-full px-5 text-center min-h-screen":"hidden"}>
-            <h1 className="text-5xl font-bold pt-10 w-full text-left">
-              Pay All Employees
-            </h1>
-          </main>
         </div>
       </div>
     </div>
