@@ -1,11 +1,11 @@
 import { executeQuery } from "../../config/db";
-const employee = async (req, res) => {
+const person = async (req, res) => {
     const x = `
-        SELECT * FROM employee;
+        SELECT * FROM person;
     `;
     console.log(x)
     let accountdata = await executeQuery(x, []);
     res.send(accountdata);
 };
 
-export { employee };
+export { person };

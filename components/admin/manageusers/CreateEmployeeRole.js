@@ -4,22 +4,33 @@ import axios from 'axios';
 
 export default function Example() {
 
-  const [employeeList, setEmployeeList] = useState([])
+
+  const [userList, setUserList] = useState([])
+
+  const [selectedUser, setSelectedUser] = useState("arwhite6")
+
+  const [salary, setSalary] = useState()
+
+  const [payments, setPayments] = useState()
+
+  const [earnings, setEarnings] = useState()
 
   useEffect(() => {
     async function getData(){
-      const res = await fetch(`/api/employee`)
+      const res = await fetch(`/api/person`)
       const data = await res.json()
-      setEmployeeList(data)
+      setUserList(data)
       console.log("data", data)
     }
+
     getData()
   }, [])
 
-
   const onSubmit=async(e)=>{
     e.preventDefault();
-    let data = await axios.post('/api/employee', employee);
+    const payload = {selectedUser, salary, payments, earnings}
+
+    let data = await axios.post('/api/employee', payload);
     console.log("data", data.data)
   }
 
@@ -34,7 +45,7 @@ export default function Example() {
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={onSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -48,11 +59,12 @@ export default function Example() {
                       <select
                         id="country"
                         name="country"
-                        autoComplete="country-name"
+                        value={selectedUser}
+                        onChange={(e) => setSelectedUser(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                      {employeeList.map((x, i) =>
-                        <option key={x}>{JSON.stringify(x.ip_perID)}</option>
+                      {userList.map((x, i) =>
+                        <option key={x}>{x.perID}</option>
                       )}
                       </select>
                     </div>
@@ -67,8 +79,8 @@ export default function Example() {
                       <input
                         type="text"
                         name="email-address"
-                        id="email-address"
-                        autoComplete="email"
+                        value={salary}
+                        onChange={(e) => setSalary(e.target.value)}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
@@ -83,8 +95,8 @@ export default function Example() {
                       <input
                         type="text"
                         name="email-address"
-                        id="email-address"
-                        autoComplete="email"
+                        value={payments}
+                        onChange={(e) => setPayments(e.target.value)}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
@@ -99,8 +111,8 @@ export default function Example() {
                       <input
                         type="text"
                         name="email-address"
-                        id="email-address"
-                        autoComplete="email"
+                        value={earnings}
+                        onChange={(e) => setEarnings(e.target.value)}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
