@@ -33,7 +33,7 @@ export default function Home() {
                 <span className="block xl:inline">Banking System</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Team 66: Malav Patel, Tristan Rogers, Ryan Dabbagh, & Mah Rella
+                By: Malav Patel, Tristan Rogers, Rayan Dabbagh, & Mah Rella
               </p>
             </div>
           </main>
