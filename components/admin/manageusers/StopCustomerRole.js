@@ -4,26 +4,20 @@ import axios from 'axios';
 
 export default function StopCustomerRole() {
 
-  const [customerList, setCustomerList] = useState([])
-
-  const [customer, setCustomer] = useState([])
+  const [userList, setUserList] = useState([])
+  const [selectedUser, setSelectedUser] = useState()
 
   useEffect(() => {
     async function getData(){
-      const res = await fetch(`/api/viewstats/customerstats`)
+      const res = await fetch(`/api/person`)
       const data = await res.json()
-      setCustomerList(data)
+      setUserList(data)
       console.log("data", data)
     }
+
     getData()
   }, [])
 
-
-  const onSubmit=async(e)=>{
-    e.preventDefault();
-    let data = await axios.delete('/api/viewstats/customerstats', customer);
-    console.log("data", data.data)
-  }
 
   return (
     <>
@@ -37,7 +31,7 @@ export default function StopCustomerRole() {
     <div className="mt-10 sm:mt-0">
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form onSubmit={onSubmit}>
+          <form>
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
@@ -52,8 +46,8 @@ export default function StopCustomerRole() {
                       placeholder='Employee ID'
                       className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
-                      {customerList.map((x, i) =>
-                        <option key={x}>{JSON.stringify(x.person_identifier)}</option>
+                      {userList.map((x, i) =>
+                        <option key={x}>{x.perID}</option>
                       )}
                     </select>
                   </div>

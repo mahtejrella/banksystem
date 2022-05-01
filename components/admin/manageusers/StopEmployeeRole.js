@@ -1,4 +1,23 @@
+import {React, useState, useEffect} from 'react'
+import { useRouter } from 'next/dist/client/router'
+import axios from 'axios';
+
 export default function StopEmployeeRole() {
+
+  const [userList, setUserList] = useState([])
+  const [selectedUser, setSelectedUser] = useState()
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/person`)
+      const data = await res.json()
+      setUserList(data)
+      console.log("data", data)
+    }
+
+    getData()
+  }, [])
+
   return (
     <>
 
@@ -18,17 +37,17 @@ export default function StopEmployeeRole() {
 
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                        Country
+                        Employee ID
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedUser}
+                        onChange={(e) => setSelectedUser(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>Mexico</option>
+                      {userList.map((x, i) =>
+                        <option key={x}>{x.perID}</option>
+                      )}
                       </select>
                     </div>
                   </div>

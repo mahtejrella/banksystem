@@ -6,13 +6,10 @@ export default function Example() {
 
 
   const [userList, setUserList] = useState([])
-
   const [selectedUser, setSelectedUser] = useState("arwhite6")
 
   const [salary, setSalary] = useState()
-
   const [payments, setPayments] = useState()
-
   const [earnings, setEarnings] = useState()
 
   useEffect(() => {
@@ -29,9 +26,8 @@ export default function Example() {
   const onSubmit=async(e)=>{
     e.preventDefault();
     const payload = {selectedUser, salary, payments, earnings}
-
+    console.log(payload);
     let data = await axios.post('/api/employee', payload);
-    console.log("data", data.data)
   }
 
   return (

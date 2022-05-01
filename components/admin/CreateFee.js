@@ -1,6 +1,37 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
+import { useRouter } from 'next/dist/client/router'
+import axios from 'axios';
 
 export default function CreateFee() {
+
+  const [bankList, setBankList] = useState([])
+  const [accountList, setAccountList] = useState([])
+
+  const [selectedBank, setSelectedBank] = useState()
+  const [selectedAccount, setSelectedAccount] = useState()
+
+  const [fee, setFee] = useState()
+
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setBankList(data)
+      console.log("data", data)
+    }
+
+    async function getData2(){
+      const res = await fetch(`/api/account`)
+      const data = await res.json()
+      setAccountList(data)
+      console.log("data", data)
+    }
+
+    getData()
+    getData2()
+  }, [])
+
     return (
       <>
   
@@ -27,13 +58,13 @@ export default function CreateFee() {
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedBank}
+                          onChange={(e) => setSelectedBank(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>User1</option>
-                          <option>User2</option>
-                          <option>User2</option>
+                        {bankList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
                         </select>
                       </div>
 
@@ -46,13 +77,13 @@ export default function CreateFee() {
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedAccount}
+                          onChange={(e) => setSelectedAccount(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>User1</option>
-                          <option>User2</option>
-                          <option>User2</option>
+                        {accountList.map((x, i) =>
+                          <option key={x}>{x.accountID}</option>
+                        )}
                         </select>
                       </div>
   
@@ -66,8 +97,8 @@ export default function CreateFee() {
                         <input
                           type="text"
                           name="email-address"
-                          id="email-address"
-                          autoComplete="email"
+                          value={fee}
+                          onChange={(e) => setFee(e.target.value)}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>

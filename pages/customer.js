@@ -4,6 +4,12 @@ import Head from 'next/head'
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 
+import ManageAccounts from '../components/customer/ManageAccounts';
+import Deposit from '../components/customer/Deposit';
+import Withdraw from '../components/customer/Withdraw';
+import ManageOverdraft from '../components/customer/ManageOverdraft';
+import MakeTransfer from '../components/customer/MakeTransfer';
+
 
 export default function customer() {
   const [numComponent, setnumComponent] = useState(0);
@@ -66,6 +72,7 @@ export default function customer() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Manage Accounts
             </h1>
+            <ManageAccounts/>
           </main>
 
           <main className={numComponent===2?"w-full px-5 text-center h-screen":"hidden"}>
@@ -96,24 +103,28 @@ export default function customer() {
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Manage Overdraft
             </h1>
+            <ManageOverdraft/>
           </main>
 
           <main className={numComponent===4?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Make Transfer
             </h1>
+            <MakeTransfer/>
           </main>
 
           <main className={numComponent===5?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Deposit
             </h1>
+            <Deposit/>
           </main>
 
           <main className={numComponent===6?"w-full px-5 text-center min-h-screen":"hidden"}>
             <h1 className="text-5xl font-bold pt-10 w-full text-left">
               Withdrawal
             </h1>
+            <Withdraw/>
           </main>
         </div>
       </div>

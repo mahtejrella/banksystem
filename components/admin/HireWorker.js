@@ -1,4 +1,35 @@
+import {React, useState, useEffect} from 'react'
+import { useRouter } from 'next/dist/client/router'
+import axios from 'axios';
+
 export default function HireWorker() {
+
+  const [bankList, setBankList] = useState([])
+  const [employeeList, setEmployeeList] = useState([])
+
+  const [selectedBank, setSelectedBank] = useState()
+  const [selectedEmployee, setSelectedEmployee] = useState()
+
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setBankList(data)
+      console.log("data", data)
+    }
+
+    async function getData2(){
+      const res = await fetch(`/api/employee`)
+      const data = await res.json()
+      setEmployeeList(data)
+      console.log("data", data)
+    }
+
+    getData()
+    getData2()
+  }, [])
+
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -24,13 +55,13 @@ export default function HireWorker() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedBank}
+                        onChange={(e) => setSelectedBank(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
+                      {bankList.map((x, i) =>
+                        <option key={x}>{x.bankID}</option>
+                      )}
                       </select>
                     </div>
 
@@ -43,13 +74,13 @@ export default function HireWorker() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedEmployee}
+                        onChange={(e) => setSelectedBank(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
+                      {employeeList.map((x, i) =>
+                        <option key={x}>{x.perID}</option>
+                      )}
                       </select>
                     </div>
                   </div>

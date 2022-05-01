@@ -1,6 +1,23 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
+import { useRouter } from 'next/dist/client/router'
+import axios from 'axios';
 
 export default function CreateCustomerRole() {
+
+  const [userList, setUserList] = useState([])
+  const [selectedUser, setSelectedUser] = useState()
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/person`)
+      const data = await res.json()
+      setUserList(data)
+      console.log("data", data)
+    }
+
+    getData()
+  }, [])
+
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -25,13 +42,13 @@ export default function CreateCustomerRole() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedUser}
+                        onChange={(e) => setSelectedUser(e.target.value)}
                         className="mt-1 justify-center block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>User1</option>
-                        <option>User2</option>
-                        <option>User2</option>
+                      {userList.map((x, i) =>
+                        <option key={x}>{x.perID}</option>
+                      )}
                       </select>
                     </div>
 
