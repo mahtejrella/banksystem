@@ -10,8 +10,8 @@ const NavBar = () => {
             <div className="text-2xl text-black font-bold">Georgia Tech Banking System</div>
             </div>
         </nav>
-        <Link href="/admin">
-        <a className="bg-black hover:bg-yellow-500 hover:text-black text-white font-bold py-2 px-4 rounded">Login</a>
+        <Link href="/">
+        <a className="bg-black hover:bg-yellow-500 hover:text-black text-white font-bold py-2 px-4 rounded">Logout</a>
         </Link>
         </header>
     )
