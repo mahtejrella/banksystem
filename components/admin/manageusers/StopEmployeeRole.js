@@ -21,7 +21,7 @@ export default function StopCustomerRole() {
     e.preventDefault();
     const payload = {selectedUser}
     console.log(payload);
-    let data = await axios.delete('/api/employee', payload);
+    let data = await axios.post('/api/stopemployee', payload);
   }
 
 
