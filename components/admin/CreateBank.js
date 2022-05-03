@@ -30,18 +30,9 @@ export default function Example() {
 
   const [employeeList, setEmployeeList] = useState([])
 
-
-  const onSubmit=async(e)=>{
-    e.preventDefault();
-    const payload = {bank, name, street, city, state, zip, resAssets, selectedCorp, selectedManager, selectedEmployee}
-
-    let data = await axios.post('/api/bank', payload);
-    console.log("data", data.data)
-  }
-
   useEffect(() => {
     async function getData(){
-      const res = await fetch(`/api/bank`)
+      const res = await fetch(`/api/corporation`)
       const data = await res.json()
       setCorpList(data)
       console.log("data", data)
@@ -55,7 +46,7 @@ export default function Example() {
     }
 
     async function getData3(){
-      const res = await fetch(`/api/workFor`)
+      const res = await fetch(`/api/employee`)
       const data = await res.json()
       setEmployeeList(data)
       console.log("data", data)
@@ -65,6 +56,13 @@ export default function Example() {
     getData2()
     getData3()
   }, [])
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {bank, name, street, city, state, zip, resAssets, selectedCorp, selectedManager, selectedEmployee};
+    let data = await axios.post('/api/bank', payload);
+    console.log("data", data.data)
+  }
 
   return (
     <>
@@ -204,7 +202,9 @@ export default function Example() {
                       <label
                         htmlFor="country"
                         className="block text-sm font-medium text-gray-700"
-                      ></label>
+                      >
+                        CorpID
+                      </label>
                       <select
                         id="country"
                         name="country"
@@ -214,7 +214,7 @@ export default function Example() {
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
                       {corpList.map((x, i) =>
-                        <option key={x}>{x.bankID}</option>
+                        <option key={x}>{x.corpID}</option>
                       )}
                       </select>
                     </div>
@@ -223,7 +223,9 @@ export default function Example() {
                       <label
                         htmlFor="country"
                         className="block text-sm font-medium text-gray-700"
-                      ></label>
+                      >
+                        manager
+                      </label>
                       <select
                         id="country"
                         name="country"
@@ -241,7 +243,9 @@ export default function Example() {
                       <label
                         htmlFor="country"
                         className="block text-sm font-medium text-gray-700"
-                      ></label>
+                      >
+                        employee
+                      </label>
                       <select
                         id="country"
                         name="country"

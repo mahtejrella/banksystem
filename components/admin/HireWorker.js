@@ -97,7 +97,7 @@ export default function HireWorker() {
                         htmlFor="email-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Salary
+                        $New salary
                       </label>
                       <input
                         type="text"
