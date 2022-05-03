@@ -1,8 +1,8 @@
 import nc from "next-connect";
-import { employee, createEmployee } from "../../controller/admin/employee"
+import { employee, createEmployee, deleteEmployee } from "../../controller/admin/employee"
 
 const handler = nc();
 handler.get(employee)
-handler.delete(employee);
+handler.delete(deleteEmployee);
 handler.post(createEmployee);
 export default handler;

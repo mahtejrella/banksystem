@@ -18,6 +18,16 @@ const createEmployee = async (req, res) => {
     res.send(accountdata);
 }
 
-export { employee, createEmployee };
+const deleteEmployee = async (req, res) => {
+    const x = `
+    call stop_customer_role("${req.body.selectedUser}");
+    `;
+
+    console.log(x)
+    let accountdata = await executeQuery(x, []);
+    res.send(accountdata);
+}
+
+export { employee, createEmployee, deleteEmployee };
 
 //call start_employee_role("${req.body.selectedUser}", "${req.body.salary}", "${req.body.payments}", "${req.body.earnings}", null, null,null,null,null,null,null,null,null,null);

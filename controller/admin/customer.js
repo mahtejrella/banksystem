@@ -18,4 +18,14 @@ const createCustomer = async (req, res) => {
     res.send(accountdata);
 };
 
-export { customer, createCustomer };
+const deleteCustomer = async (req, res) => {
+
+    const x = `
+    call stop_customer_role("${req.body.selectedUser}");
+    `;
+    console.log(x)
+    let accountdata = await executeQuery(x, []);
+    res.send(accountdata);
+};
+
+export { customer, createCustomer, deleteCustomer };
