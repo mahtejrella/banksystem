@@ -7,9 +7,8 @@ export default function CreateFee() {
   const [bankList, setBankList] = useState([])
   const [accountList, setAccountList] = useState([])
 
-  const [selectedBank, setSelectedBank] = useState()
-  const [selectedAccount, setSelectedAccount] = useState()
-
+  const [selectedBank, setSelectedBank] = useState("BA_South")
+  const [selectedAccount, setSelectedAccount] = useState("GT_investments")
   const [fee, setFee] = useState()
 
 
@@ -32,6 +31,14 @@ export default function CreateFee() {
     getData2()
   }, [])
 
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedBank, selectedAccount, fee}
+    console.log(payload);
+    let data = await axios.post('/api/fees', payload);
+    console.log("data", data)
+  }
+
     return (
       <>
   
@@ -44,7 +51,7 @@ export default function CreateFee() {
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="#" method="POST">
+              <form onSubmit={onSubmit}>
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">

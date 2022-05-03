@@ -1,5 +1,4 @@
 import {React, useState, useEffect} from 'react'
-import { useRouter } from 'next/dist/client/router'
 import axios from 'axios';
 
 export default function HireWorker() {
@@ -7,8 +6,10 @@ export default function HireWorker() {
   const [bankList, setBankList] = useState([])
   const [employeeList, setEmployeeList] = useState([])
 
-  const [selectedBank, setSelectedBank] = useState()
-  const [selectedEmployee, setSelectedEmployee] = useState()
+  const [selectedBank, setSelectedBank] = useState("BA_South")
+  const [selectedEmployee, setSelectedEmployee] = useState("arwhite6")
+
+  const [salary, setSalary] = useState()
 
 
   useEffect(() => {
@@ -32,10 +33,9 @@ export default function HireWorker() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedBank, selectedEmployee}
-
+    const payload = {selectedEmployee, selectedBank, salary}
+    console.log(payload);
     let data = await axios.post('/api/workFor', payload);
-    console.log("data", data.data)
   }
 
   return (
@@ -90,6 +90,22 @@ export default function HireWorker() {
                         <option key={x}>{x.perID}</option>
                       )}
                       </select>
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="email-address"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Salary
+                      </label>
+                      <input
+                        type="text"
+                        name="email-address"
+                        value={salary}
+                        onChange={(e) => setSalary(e.target.value)}
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
+                      />
                     </div>
                   </div>
                 </div>
