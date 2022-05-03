@@ -30,6 +30,14 @@ export default function HireWorker() {
     getData2()
   }, [])
 
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedBank, selectedEmployee}
+
+    let data = await axios.post('/api/workFor', payload);
+    console.log("data", data.data)
+  }
+
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -41,7 +49,7 @@ export default function HireWorker() {
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={onSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -75,7 +83,7 @@ export default function HireWorker() {
                       <select
                         id="country"
                         value={selectedEmployee}
-                        onChange={(e) => setSelectedBank(e.target.value)}
+                        onChange={(e) => setSelectedEmployee(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
                       {employeeList.map((x, i) =>
