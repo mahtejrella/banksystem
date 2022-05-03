@@ -1,11 +1,10 @@
 import {React, useState, useEffect} from 'react'
-import { useRouter } from 'next/dist/client/router'
 import axios from 'axios';
 
 export default function CreateCustomerRole() {
 
   const [userList, setUserList] = useState([])
-  const [selectedUser, setSelectedUser] = useState()
+  const [selectedUser, setSelectedUser] = useState("arwhite6")
 
   useEffect(() => {
     async function getData(){
@@ -21,9 +20,8 @@ export default function CreateCustomerRole() {
   const onSubmit=async(e)=>{
     e.preventDefault();
     const payload = {selectedUser}
-
+    console.log(payload);
     let data = await axios.post('/api/customer', payload);
-    console.log("data", data.data)
   }
 
 

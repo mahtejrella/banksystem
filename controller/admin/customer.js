@@ -10,7 +10,6 @@ const customer = async (req, res) => {
 
 const createCustomer = async (req, res) => {
 
-    console.log(req.body)
     const x = `
     call start_customer_role("${req.body.selectedUser}", null, null, null, null, null, null, null, null, null, null);
     `;
