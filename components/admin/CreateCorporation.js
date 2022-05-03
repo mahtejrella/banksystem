@@ -110,7 +110,6 @@ export default function CreateCorporation() {
                       Create
                     </button>
                   </div>
-
                 </div>
               </form>
             </div>
