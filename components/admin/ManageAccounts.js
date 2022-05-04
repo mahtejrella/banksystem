@@ -28,7 +28,13 @@ export default function ManageAccounts() {
   const [existingBankList, setexistingBankList] = useState([])
   const [selectedExistingBank, setSelectedExistingBank] = useState("BA_South")
 
+  const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    setUsername(localStorage.getItem("user"))
+
+
     async function getData(){
       const res = await fetch(`/api/bank`)
       const data = await res.json()
@@ -73,7 +79,7 @@ export default function ManageAccounts() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedBank, selectedAccount, selectedCustomer, accountID, initial, min, rate, withdrawals};
+    const payload = {selectedBank, selectedAccount, selectedCustomer, accountID, initial, min, rate, withdrawals, username};
     let data = await axios.post('/api/newaccount', payload);
     console.log("data", data.data)
   }
@@ -81,7 +87,7 @@ export default function ManageAccounts() {
   const onSubmit2=async(e)=>{
     e.preventDefault();
 
-    const payload = {selectedExistingBank, selectedExistingAccount, selectedExistingCustomer};
+    const payload = {selectedExistingBank, selectedExistingAccount, selectedExistingCustomer, username};
 
     if (permission == "Add_Access") {
       let data = await axios.post('/api/addaccess', payload);
