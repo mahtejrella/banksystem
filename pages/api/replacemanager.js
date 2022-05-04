@@ -5,4 +5,5 @@ const handler = nc();
 handler.get(replacemanager);
 handler.delete(replacemanager);
 handler.post(replacemanager);
+handler.put(replacemanager);
 export default handler;
