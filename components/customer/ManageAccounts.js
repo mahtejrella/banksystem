@@ -10,7 +10,7 @@ export default function ManageAccounts() {
   
     const [existingCustomerList, setExistingCustomerList] = useState([])
     const [selectedExistingCustomer, setSelectedExistingCustomer] = useState("arwhite6")
-    const [permission, setPermission] = useState("Add Access")
+    const [permission, setPermission] = useState("Add_Access")
   
     const [existingBankList, setexistingBankList] = useState([])
     const [selectedExistingBank, setSelectedExistingBank] = useState("BA_South")
