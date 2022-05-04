@@ -8,9 +8,17 @@ export default function ManageOverdraft() {
   const [overdraftList, setOverdraftList] = useState([])
   const [savingsList, setSavingsList] = useState([])
 
-  const [selectedChecking, setSelectedChecking] = useState()
+  const [selectedChecking, setSelectedChecking] = useState("checking_A")
   const [selectedOverdraft, setSelectedOverdraft] = useState()
-  const [selectedSavings, setSelectedSavings] = useState()
+  const [selectedSavings, setSelectedSavings] = useState("savings_B")
+
+  const [bankList, setBankList] = useState([])
+  const [selectedBank, setSelectedBank] = useState("BA_North")
+
+  const [bankList1, setBankList1] = useState([])
+  const [selectedBank1, setSelectedBank1] = useState("BA_North")
+
+  const [overdraft, setOverdraft] = useState("Add")
 
   useEffect(() => {
     async function getData(){
@@ -27,9 +35,38 @@ export default function ManageOverdraft() {
       console.log("data", data)
     }
 
+    async function getData3(){
+      const res = await fetch(`/api/checking`)
+      const data = await res.json()
+      setBankList(data)
+      console.log("data", data)
+    }
+
+    async function getData4(){
+      const res = await fetch(`/api/savings`)
+      const data = await res.json()
+      setBankList1(data)
+      console.log("data", data)
+    }
+
     getData()
     getData2()
+    getData3()
+    getData4()
   }, [])
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedChecking, selectedSavings, selectedBank, selectedBank1};
+
+    if (overdraft == "Add") {
+      let data = await axios.post('/api/addoverdraft', payload);
+      console.log("data", data.data)
+    } else {
+      let data = await axios.post('/api/removeoverdraft', payload);
+      console.log("data", data.data)
+    }
+  }
 
     return (
       <>
@@ -43,10 +80,48 @@ export default function ManageOverdraft() {
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="#" method="POST">
+              <form onSubmit={onSubmit}>
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
+
+                      <div className="col-span-6 sm:col-span-4">
+                          <label
+                            htmlFor="country"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Bank (Checking)
+                          </label>
+                          <select
+                            id="country"
+                            value={selectedBank}
+                            onChange={(e) => setSelectedBank(e.target.value)}
+                            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          >
+                          {bankList.map((x, i) =>
+                            <option key={x}>{x.bankID}</option>
+                          )}
+                          </select>
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-4">
+                          <label
+                            htmlFor="country"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Bank (Saving)
+                          </label>
+                          <select
+                            id="country"
+                            value={selectedBank1}
+                            onChange={(e) => setSelectedBank1(e.target.value)}
+                            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          >
+                          {bankList1.map((x, i) =>
+                            <option key={x}>{x.bankID}</option>
+                          )}
+                          </select>
+                        </div>
                       
                       <div className="col-span-6 sm:col-span-4">
                         <label
@@ -72,16 +147,16 @@ export default function ManageOverdraft() {
                           htmlFor="country"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Adding Overdraft Policy
+                          Overdraft Policy
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={overdraft}
+                          onChange={(e) => setOverdraft(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Yes</option>
-                          <option>No</option>
+                          <option>Add</option>
+                          <option>Remove</option>
                         </select>
                       </div>
 
