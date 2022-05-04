@@ -90,7 +90,7 @@ export default function Home() {
                       setnumComponent(7);
                     }}
                   >
-                    Manager Overdraft
+                    Manage Overdraft
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
