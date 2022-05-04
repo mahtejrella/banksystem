@@ -1,4 +1,42 @@
+import {React, useState, useEffect} from 'react'
+import axios from 'axios';
+
 export default function Deposit() {
+
+  const [bankList, setBankList] = useState([])
+  const [selectedBank, setSelectedBank] = useState("BA_South")
+
+  const [accountList, setAccountList] = useState([])
+  const [selectedAccount, setSelectedAccount] = useState()
+
+  const [amount, setAmount] = useState()
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setBankList(data)
+      console.log("data", data)
+    }
+
+    async function getData2(){
+      const res = await fetch(`/api/account`)
+      const data = await res.json()
+      setAccountList(data)
+      console.log("data", data)
+    }
+
+    getData()
+    getData2()
+  }, [])
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedBank, selectedAccount, amount}
+    console.log(payload);
+    let data = await axios.post('/api/deposit', payload);
+  }
+
   return (
     <>
 
@@ -11,7 +49,7 @@ export default function Deposit() {
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={onSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -27,13 +65,13 @@ export default function Deposit() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedBank}
+                        onChange={(e) => setSelectedBank(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Bank1</option>
-                        <option>Bank2</option>
-                        <option>Bank2</option>
+                        {bankList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -46,13 +84,13 @@ export default function Deposit() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedAccount}
+                        onChange={(e) => setSelectedAccount(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Emp1</option>
-                        <option>Emp2</option>
-                        <option>Emp2</option>
+                        {accountList.map((x, i) =>
+                          <option key={x}>{x.accountID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -66,8 +104,8 @@ export default function Deposit() {
                       <input
                         type="text"
                         name="email-address"
-                        id="email-address"
-                        autoComplete="email"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
