@@ -20,7 +20,7 @@ export default function Example() {
 
   const [selectedCorp, setSelectedCorp] = useState("BA_South")
 
-  const [selectedManager, setSelectedManager] = useState("ghopper9")
+  const [selectedManager, setSelectedManager] = useState("arwhite6")
 
   const [selectedEmployee, setSelectedEmployee] = useState("arwhite6")
 
@@ -39,7 +39,7 @@ export default function Example() {
     }
 
     async function getData2(){
-      const res = await fetch(`/api/bank`)
+      const res = await fetch(`/api/employee`)
       const data = await res.json()
       setManagerList(data)
       console.log("data", data)
@@ -234,7 +234,7 @@ export default function Example() {
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
                       {managerList.map((x, i) =>
-                        <option key={x}>{x.manager}</option>
+                        <option key={x}>{x.perID}</option>
                       )}
                       </select>
                     </div>

@@ -35,8 +35,7 @@ export default function ReplaceManager() {
     e.preventDefault();
     const payload = {selectedEmployee, selectedBank, salary}
     console.log(payload);
-    let data = await axios.put('/api/manager', payload);
-    console.log("data", data)
+    let data = await axios.post('/api/replacemanager', payload);
   }
 
   return (
@@ -98,7 +97,7 @@ export default function ReplaceManager() {
                         htmlFor="email-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Salary
+                        $New salary
                       </label>
                       <input
                         type="text"

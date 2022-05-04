@@ -18,6 +18,7 @@
     "import": "^0.0.6",
     "mysql": "^2.18.1",
     "next": "latest",
+    "next-auth": "^4.3.4",
     "next-connect": "^0.12.2",
     "react": "^17.0.2",
     "react-datepicker": "^3.3.0",
