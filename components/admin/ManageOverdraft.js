@@ -20,7 +20,12 @@ export default function ManageOverdraft() {
 
   const [overdraft, setOverdraft] = useState("Add")
 
+  const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    setUsername(localStorage.getItem("user"))
+
     async function getData(){
       const res = await fetch(`/api/checking`)
       const data = await res.json()
@@ -57,7 +62,7 @@ export default function ManageOverdraft() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedChecking, selectedSavings, selectedBank, selectedBank1};
+    const payload = {selectedChecking, selectedSavings, selectedBank, selectedBank1, username};
 
     if (overdraft == "Add") {
       let data = await axios.post('/api/addoverdraft', payload);
@@ -105,6 +110,25 @@ export default function ManageOverdraft() {
                         </div>
 
                         <div className="col-span-6 sm:col-span-4">
+                        <label
+                          htmlFor="country"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Available Checking Accounts
+                        </label>
+                        <select
+                          id="country"
+                          value={selectedChecking}
+                          onChange={(e) => setSelectedChecking(e.target.value)}
+                          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                        {checkingList.map((x, i) =>
+                          <option key={x}>{x.accountID}</option>
+                        )}
+                        </select>
+                      </div>
+
+                        <div className="col-span-6 sm:col-span-4">
                           <label
                             htmlFor="country"
                             className="block text-sm font-medium text-gray-700"
@@ -122,21 +146,21 @@ export default function ManageOverdraft() {
                           )}
                           </select>
                         </div>
-                      
+
                       <div className="col-span-6 sm:col-span-4">
                         <label
                           htmlFor="country"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Available Checking Accounts
+                          Available Savings Accounts
                         </label>
                         <select
                           id="country"
-                          value={selectedChecking}
-                          onChange={(e) => setSelectedChecking(e.target.value)}
+                          value={selectedSavings}
+                          onChange={(e) => setSelectedSavings(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                        {checkingList.map((x, i) =>
+                        {savingsList.map((x, i) =>
                           <option key={x}>{x.accountID}</option>
                         )}
                         </select>
@@ -157,25 +181,6 @@ export default function ManageOverdraft() {
                         >
                           <option>Add</option>
                           <option>Remove</option>
-                        </select>
-                      </div>
-
-                      <div className="col-span-6 sm:col-span-4">
-                        <label
-                          htmlFor="country"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Available Savings Accounts
-                        </label>
-                        <select
-                          id="country"
-                          value={selectedSavings}
-                          onChange={(e) => setSelectedSavings(e.target.value)}
-                          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                        {savingsList.map((x, i) =>
-                          <option key={x}>{x.accountID}</option>
-                        )}
                         </select>
                       </div>
                     </div>
