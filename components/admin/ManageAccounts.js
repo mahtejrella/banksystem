@@ -3,6 +3,47 @@ import { useRouter } from 'next/dist/client/router'
 import axios from 'axios';
 
 export default function ManageAccounts() {
+
+  const [bankList, setBankList] = useState([])
+  const [customerList, setcustomerList] = useState([])
+  const [selectedBank, setSelectedBank] = useState("BA_North")
+  const [selectedAccount, setSelectedAccount] = useState("checking")
+  const [selectedCustomer, setSelectedCustomer] = useState("arwhite6")
+
+  const [accountID, setaccountID] = useState()
+
+  const [initial, setInitial] = useState()
+  const [min, setMin] = useState()
+  const [rate, setRate] = useState()
+  const [withdrawals, setWithdrawals] = useState()
+
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setBankList(data)
+      console.log("data", data)
+    }
+
+    async function getData1(){
+      const res = await fetch(`/api/customer`)
+      const data = await res.json()
+      setcustomerList(data)
+      console.log("data", data)
+    }
+
+    getData()
+    getData1()
+  }, [])
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedBank, selectedAccount, selectedCustomer, accountID, initial, min, rate, withdrawals};
+    let data = await axios.post('/api/newaccount', payload);
+    console.log("data", data.data)
+  }
+
     return (
       <>
   
@@ -102,7 +143,7 @@ export default function ManageAccounts() {
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 grid-cols-3 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="#" method="POST">
+              <form onSubmit={onSubmit}>
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -126,14 +167,30 @@ export default function ManageAccounts() {
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedBank}
+                          onChange={(e) => setSelectedBank(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Bank1</option>
-                          <option>Bank2</option>
-                          <option>Bank2</option>
+                        {bankList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
                         </select>
+                      </div>
+
+                      <div className="col-span-6 sm:col-span-4">
+                        <label
+                          htmlFor="email-address"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Account ID
+                        </label>
+                        <input
+                          type="text"
+                          name="email-address"
+                          value={accountID}
+                          onChange={(e) => setaccountID(e.target.value)}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
+                        />
                       </div>
 
                       <div className="col-span-6 sm:col-span-4">
@@ -141,17 +198,17 @@ export default function ManageAccounts() {
                           htmlFor="country"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Account ID
+                          Owner ID
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedCustomer}
+                          onChange={(e) => setSelectedCustomer(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Emp1</option>
-                          <option>Emp2</option>
-                          <option>Emp2</option>
+                        {customerList.map((x, i) =>
+                          <option key={x}>{x.perID}</option>
+                        )}
                         </select>
                       </div>
 
@@ -164,13 +221,13 @@ export default function ManageAccounts() {
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedAccount}
+                          onChange={(e) => setSelectedAccount(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Emp1</option>
-                          <option>Emp2</option>
-                          <option>Emp2</option>
+                          <option>checking</option>
+                          <option>savings</option>
+                          <option>market</option>
                         </select>
                       </div>
 
@@ -184,8 +241,8 @@ export default function ManageAccounts() {
                         <input
                           type="text"
                           name="email-address"
-                          id="email-address"
-                          autoComplete="email"
+                          value={initial}
+                          onChange={(e) => setInitial(e.target.value)}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>
@@ -200,8 +257,8 @@ export default function ManageAccounts() {
                         <input
                           type="text"
                           name="email-address"
-                          id="email-address"
-                          autoComplete="email"
+                          value={min}
+                          onChange={(e) => setMin(e.target.value)}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>
@@ -216,8 +273,8 @@ export default function ManageAccounts() {
                         <input
                           type="text"
                           name="email-address"
-                          id="email-address"
-                          autoComplete="email"
+                          value={rate}
+                          onChange={(e) => setRate(e.target.value)}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>
@@ -232,8 +289,8 @@ export default function ManageAccounts() {
                         <input
                           type="text"
                           name="email-address"
-                          id="email-address"
-                          autoComplete="email"
+                          value={withdrawals}
+                          onChange={(e) => setWithdrawals(e.target.value)}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>
