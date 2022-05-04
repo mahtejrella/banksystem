@@ -17,6 +17,16 @@ export default function ManageAccounts() {
   const [rate, setRate] = useState()
   const [withdrawals, setWithdrawals] = useState()
 
+  //Existing accounts
+  const [existingAccountList, setExistingAccountList] = useState([])
+  const [selectedExistingAccount, setSelectedExistingAccount] = useState()
+
+  const [existingCustomerList, setExistingCustomerList] = useState([])
+  const [selectedExistingCustomer, setSelectedExistingCustomer] = useState()
+  const [permission, setPermission] = useState("Add Access")
+
+  const [existingBankList, setexistingBankList] = useState([])
+  const [selectedExistingBank, setSelectedExistingBank] = useState("BA_North")
 
   useEffect(() => {
     async function getData(){
@@ -33,8 +43,32 @@ export default function ManageAccounts() {
       console.log("data", data)
     }
 
+    async function getData2(){
+      const res = await fetch(`/api/account`)
+      const data = await res.json()
+      setExistingAccountList(data)
+      console.log("data", data)
+    }
+
+    async function getData3(){
+      const res = await fetch(`/api/customer`)
+      const data = await res.json()
+      setExistingCustomerList(data)
+      console.log("data", data)
+    }
+
+    async function getData4(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setexistingBankList(data)
+      console.log("data", data)
+    }
+
     getData()
     getData1()
+    getData2()
+    getData3()
+    getData4()
   }, [])
 
   const onSubmit=async(e)=>{
@@ -42,6 +76,19 @@ export default function ManageAccounts() {
     const payload = {selectedBank, selectedAccount, selectedCustomer, accountID, initial, min, rate, withdrawals};
     let data = await axios.post('/api/newaccount', payload);
     console.log("data", data.data)
+  }
+
+  const onSubmit2=async(e)=>{
+    e.preventDefault();
+
+    const payload = {selectedExistingBank, selectedExistingAccount, selectedExistingCustomer};
+
+    if (permission == "Add_Access") {
+      let data = await axios.post('/api/addaccess', payload);
+      console.log("data", data.data)
+    } else {
+      let data = await axios.post('/api/removeaccess', payload);
+    }
   }
 
     return (
@@ -56,7 +103,7 @@ export default function ManageAccounts() {
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="#" method="POST">
+              <form onSubmit={onSubmit2}>
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -75,17 +122,36 @@ export default function ManageAccounts() {
                           htmlFor="country"
                           className="block text-sm font-medium text-gray-700"
                         >
+                          Bank
+                        </label>
+                        <select
+                          id="country"
+                          value={selectedExistingBank}
+                          onChange={(e) => setSelectedExistingBank(e.target.value)}
+                          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                        {existingBankList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
+                        </select>
+                      </div>
+
+                      <div className="col-span-6 sm:col-span-4">
+                        <label
+                          htmlFor="country"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Accessible Accounts
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedExistingAccount}
+                          onChange={(e) => setSelectedExistingAccount(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>User1</option>
-                          <option>User2</option>
-                          <option>User2</option>
+                          {existingAccountList.map((x, i) =>
+                            <option key={x}>{x.accountID}</option>
+                          )}
                         </select>
                       </div>
 
@@ -98,12 +164,13 @@ export default function ManageAccounts() {
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={selectedExistingCustomer}
+                          onChange={(e) => setSelectedExistingCustomer(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Yes</option>
-                          <option>No</option>
+                            {existingCustomerList.map((x, i) =>
+                              <option key={x}>{x.perID}</option>
+                            )}
                         </select>
                       </div>
 
@@ -112,16 +179,16 @@ export default function ManageAccounts() {
                           htmlFor="country"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Adding Owner
+                          Permission Type
                         </label>
                         <select
                           id="country"
-                          name="country"
-                          autoComplete="country-name"
+                          value={permission}
+                          onChange={(e) => setPermission(e.target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option>Yes</option>
-                          <option>No</option>
+                          <option>Add_Access</option>
+                          <option>Remove_Access</option>
                         </select>
                       </div>
                     </div>
