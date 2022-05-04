@@ -13,6 +13,11 @@ import MakeTransfer from '../components/customer/MakeTransfer';
 import NavBar from '../components/NavBar';
 
 export default function customer() {
+
+  useEffect(() => {
+    alert(localStorage.getItem("user"))
+  }, [])
+
   const [numComponent, setnumComponent] = useState(0);
   return (
     <div>

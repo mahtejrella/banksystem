@@ -20,6 +20,11 @@ import Link from "next/link"
 import NavBar from "../components/NavBar";
 
 export default function Home() {
+
+  useEffect(() => {
+    alert(localStorage.getItem("user"))
+  }, [])
+
   const [numComponent, setnumComponent] = useState(0);
   return (
     <div>

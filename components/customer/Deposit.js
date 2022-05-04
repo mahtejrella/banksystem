@@ -11,7 +11,12 @@ export default function Deposit() {
 
   const [amount, setAmount] = useState()
 
+  //const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    //setUsername(localStorage.setItem("user", perID))
+
     async function getData(){
       const res = await fetch(`/api/bank`)
       const data = await res.json()

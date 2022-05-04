@@ -10,6 +10,11 @@ import HireWorker from "../components/manager/HireWorker";
 import NavBar from '../components/NavBar';
 
 export default function manager() {
+
+  useEffect(() => {
+    alert(localStorage.getItem("user"))
+  }, [])
+
   const [numComponent, setnumComponent] = useState(0);
   return (
     <div>
