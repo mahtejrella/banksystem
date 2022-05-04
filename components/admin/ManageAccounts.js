@@ -6,7 +6,7 @@ export default function ManageAccounts() {
 
   const [bankList, setBankList] = useState([])
   const [customerList, setcustomerList] = useState([])
-  const [selectedBank, setSelectedBank] = useState("BA_North")
+  const [selectedBank, setSelectedBank] = useState("BA_South")
   const [selectedAccount, setSelectedAccount] = useState("checking")
   const [selectedCustomer, setSelectedCustomer] = useState("arwhite6")
 
@@ -19,14 +19,14 @@ export default function ManageAccounts() {
 
   //Existing accounts
   const [existingAccountList, setExistingAccountList] = useState([])
-  const [selectedExistingAccount, setSelectedExistingAccount] = useState()
+  const [selectedExistingAccount, setSelectedExistingAccount] = useState("GT_investments")
 
   const [existingCustomerList, setExistingCustomerList] = useState([])
-  const [selectedExistingCustomer, setSelectedExistingCustomer] = useState()
+  const [selectedExistingCustomer, setSelectedExistingCustomer] = useState("arwhite6")
   const [permission, setPermission] = useState("Add Access")
 
   const [existingBankList, setexistingBankList] = useState([])
-  const [selectedExistingBank, setSelectedExistingBank] = useState("BA_North")
+  const [selectedExistingBank, setSelectedExistingBank] = useState("BA_South")
 
   useEffect(() => {
     async function getData(){

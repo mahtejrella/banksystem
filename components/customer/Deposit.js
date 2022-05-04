@@ -7,15 +7,15 @@ export default function Deposit() {
   const [selectedBank, setSelectedBank] = useState("BA_South")
 
   const [accountList, setAccountList] = useState([])
-  const [selectedAccount, setSelectedAccount] = useState()
+  const [selectedAccount, setSelectedAccount] = useState("GT_investments")
 
   const [amount, setAmount] = useState()
 
-  //const [username, setUsername] = useState()
+  const [username, setUsername] = useState()
 
   useEffect(() => {
 
-    //setUsername(localStorage.setItem("user", perID))
+    setUsername(localStorage.getItem("user"))
 
     async function getData(){
       const res = await fetch(`/api/bank`)
@@ -37,7 +37,7 @@ export default function Deposit() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedBank, selectedAccount, amount}
+    const payload = {selectedBank, selectedAccount, amount, username}
     console.log(payload);
     let data = await axios.post('/api/deposit', payload);
   }

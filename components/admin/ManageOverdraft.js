@@ -13,10 +13,10 @@ export default function ManageOverdraft() {
   const [selectedSavings, setSelectedSavings] = useState("savings_B")
 
   const [bankList, setBankList] = useState([])
-  const [selectedBank, setSelectedBank] = useState("BA_North")
+  const [selectedBank, setSelectedBank] = useState("BA_West")
 
   const [bankList1, setBankList1] = useState([])
-  const [selectedBank1, setSelectedBank1] = useState("BA_North")
+  const [selectedBank1, setSelectedBank1] = useState("BA_West")
 
   const [overdraft, setOverdraft] = useState("Add")
 

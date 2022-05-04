@@ -17,7 +17,12 @@ export default function MakeTransfer() {
 
   const [amount, setAmount] = useState()
 
+  const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    setUsername(localStorage.getItem("user"))
+
     async function getData(){
       const res = await fetch(`/api/bank`)
       const data = await res.json()
@@ -40,7 +45,7 @@ export default function MakeTransfer() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedFromBank, selectedToBank, selectedFromAccount, selectedToAccount, amount}
+    const payload = {selectedFromBank, selectedToBank, selectedFromAccount, selectedToAccount, amount, username}
     console.log(payload);
     let data = await axios.post('/api/transfer', payload);
   }

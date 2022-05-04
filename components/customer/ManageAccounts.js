@@ -6,16 +6,20 @@ export default function ManageAccounts() {
 
     //Existing accounts
     const [existingAccountList, setExistingAccountList] = useState([])
-    const [selectedExistingAccount, setSelectedExistingAccount] = useState()
+    const [selectedExistingAccount, setSelectedExistingAccount] = useState("GT_investments")
   
     const [existingCustomerList, setExistingCustomerList] = useState([])
-    const [selectedExistingCustomer, setSelectedExistingCustomer] = useState()
+    const [selectedExistingCustomer, setSelectedExistingCustomer] = useState("arwhite6")
     const [permission, setPermission] = useState("Add Access")
   
     const [existingBankList, setexistingBankList] = useState([])
-    const [selectedExistingBank, setSelectedExistingBank] = useState("BA_North")
+    const [selectedExistingBank, setSelectedExistingBank] = useState("BA_South")
+
+    const [username, setUsername] = useState()
 
     useEffect(() => {
+
+      setUsername(localStorage.getItem("user"))
   
       async function getData(){
         const res = await fetch(`/api/account`)
@@ -46,7 +50,7 @@ export default function ManageAccounts() {
     const onSubmit2=async(e)=>{
       e.preventDefault();
   
-      const payload = {selectedExistingBank, selectedExistingAccount, selectedExistingCustomer};
+      const payload = {selectedExistingBank, selectedExistingAccount, selectedExistingCustomer, username};
   
       if (permission == "Add_Access") {
         let data = await axios.post('/api/addaccess', payload);

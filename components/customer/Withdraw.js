@@ -11,7 +11,12 @@ export default function Withdraw() {
 
   const [amount, setAmount] = useState()
 
+  const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    setUsername(localStorage.getItem("user"))
+
     async function getData(){
       const res = await fetch(`/api/bank`)
       const data = await res.json()
@@ -32,7 +37,7 @@ export default function Withdraw() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedBank, selectedAccount, amount}
+    const payload = {selectedBank, selectedAccount, amount, username}
     console.log(payload);
     let data = await axios.post('/api/withdraw', payload);
   }

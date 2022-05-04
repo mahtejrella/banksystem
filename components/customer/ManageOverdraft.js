@@ -13,14 +13,19 @@ export default function ManageOverdraft() {
   const [selectedSavings, setSelectedSavings] = useState("savings_B")
 
   const [bankList, setBankList] = useState([])
-  const [selectedBank, setSelectedBank] = useState("BA_North")
+  const [selectedBank, setSelectedBank] = useState("BA_West")
 
   const [bankList1, setBankList1] = useState([])
-  const [selectedBank1, setSelectedBank1] = useState("BA_North")
+  const [selectedBank1, setSelectedBank1] = useState("BA_West")
 
   const [overdraft, setOverdraft] = useState("Add")
 
+  const [username, setUsername] = useState()
+
   useEffect(() => {
+
+    setUsername(localStorage.getItem("user"))
+
     async function getData(){
       const res = await fetch(`/api/checking`)
       const data = await res.json()
@@ -57,7 +62,7 @@ export default function ManageOverdraft() {
 
   const onSubmit=async(e)=>{
     e.preventDefault();
-    const payload = {selectedChecking, selectedSavings, selectedBank, selectedBank1};
+    const payload = {selectedChecking, selectedSavings, selectedBank, selectedBank1, username};
 
     if (overdraft == "Add") {
       let data = await axios.post('/api/addoverdraft', payload);
