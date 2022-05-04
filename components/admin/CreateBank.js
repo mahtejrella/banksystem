@@ -18,7 +18,7 @@ export default function Example() {
 
   const [resAssets, setresAssets] = useState()
 
-  const [selectedCorp, setSelectedCorp] = useState("BA_South")
+  const [selectedCorp, setSelectedCorp] = useState("BA")
 
   const [selectedManager, setSelectedManager] = useState("arwhite6")
 
