@@ -1,4 +1,50 @@
+import {React, useState, useEffect} from 'react'
+import axios from 'axios';
+
 export default function MakeTransfer() {
+
+  const [bankFromList, setBankFromList] = useState([])
+  const [selectedFromBank, setSelectedFromBank] = useState("BA_South")
+
+  const [bankToList, setBankToList] = useState([])
+  const [selectedToBank, setSelectedToBank] = useState("BA_South")
+
+  const [accountFromList, setAccountFromList] = useState([])
+  const [selectedFromAccount, setSelectedFromAccount] = useState("GT_investments")
+
+  const [accountToList, setAccountToList] = useState([])
+  const [selectedToAccount, setSelectedToAccount] = useState("GT_investments")
+
+  const [amount, setAmount] = useState()
+
+  useEffect(() => {
+    async function getData(){
+      const res = await fetch(`/api/bank`)
+      const data = await res.json()
+      setBankFromList(data)
+      setBankToList(data)
+      console.log("data", data)
+    }
+
+    async function getData2(){
+      const res = await fetch(`/api/account`)
+      const data = await res.json()
+      setAccountFromList(data)
+      setAccountToList(data)
+      console.log("data", data)
+    }
+
+    getData()
+    getData2()
+  }, [])
+
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const payload = {selectedFromBank, selectedToBank, selectedFromAccount, selectedToAccount, amount}
+    console.log(payload);
+    let data = await axios.post('/api/transfer', payload);
+  }
+
   return (
     <>
 
@@ -11,7 +57,7 @@ export default function MakeTransfer() {
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={onSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -27,13 +73,13 @@ export default function MakeTransfer() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedFromBank}
+                        onChange={(e) => setSelectedFromBank(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Bank1</option>
-                        <option>Bank2</option>
-                        <option>Bank2</option>
+                        {bankFromList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -46,13 +92,13 @@ export default function MakeTransfer() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedFromAccount}
+                        onChange={(e) => setSelectedFromAccount(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Emp1</option>
-                        <option>Emp2</option>
-                        <option>Emp2</option>
+                        {accountFromList.map((x, i) =>
+                          <option key={x}>{x.accountID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -67,13 +113,13 @@ export default function MakeTransfer() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedToBank}
+                        onChange={(e) => setSelectedToBank(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Bank1</option>
-                        <option>Bank2</option>
-                        <option>Bank2</option>
+                        {bankToList.map((x, i) =>
+                          <option key={x}>{x.bankID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -86,13 +132,13 @@ export default function MakeTransfer() {
                       </label>
                       <select
                         id="country"
-                        name="country"
-                        autoComplete="country-name"
+                        value={selectedToAccount}
+                        onChange={(e) => setSelectedToAccount(e.target.value)}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Emp1</option>
-                        <option>Emp2</option>
-                        <option>Emp2</option>
+                        {accountToList.map((x, i) =>
+                          <option key={x}>{x.accountID}</option>
+                        )}
                       </select>
                     </div>
 
@@ -106,8 +152,8 @@ export default function MakeTransfer() {
                       <input
                         type="text"
                         name="email-address"
-                        id="email-address"
-                        autoComplete="email"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
